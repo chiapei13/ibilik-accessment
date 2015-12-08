@@ -1,0 +1,25 @@
+<h1>User Profile</h1>
+
+Name: <%= @user.name %><br>
+Email: <%= @user.email %><br>
+<br>
+<!-- <a href="/users/<%= @user.id %>/edit"><button>Edit profile</button></a> -->
+<!-- no edit user profile as part of assessment -->
+<br>
+
+ <!-- NEED TO DO ALL BOOKINGS -->
+<p>All Properties Booked by you:</p>
+<ul>
+	<% @user.bookings.each do |booking| %>
+		<li><a href="/properties/<%= booking.property.id %>"><%= booking.property.description %></a>
+			Booking is from <%= booking.start_date %> to <%= booking.end_date %> 	<a href="/bookings/<%= booking.id %>/edit"><button>Edit or Delete This Booking</button></a>
+			</li>
+	<% end %>
+</ul>
+ <!-- NEED TO DO ALL PROPERTIES LISTED BY USER -->
+<p>All Property Listed by you:</p>
+<ul>
+	<% @user.properties.each do |property| %>
+		<li><a href="/properties/<%= property.id %>"><%= property.description %></a></li>
+	<% end %>
+</ul>

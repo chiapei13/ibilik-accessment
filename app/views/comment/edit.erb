@@ -1,0 +1,23 @@
+<h1>Edit Your Comment</h1>
+
+for listing: <%= @property.description %><br>
+by <%= @property.user.name %><br>
+<br>
+Location: <%= @property.location %><br>
+Availability: <%= @property.availability %><br>
+Price: <%= @property.price %><br>
+<br>
+<form action="/comments/<%=@comment.id%>" method="POST">
+	<input type="hidden" name="_method" value="patch">
+
+	<label>Your Reply:</label>
+	<textarea name="body"><%= @comment.body %></textarea><br>
+
+	<input type="submit" value="Update Comment">
+</form>
+<br>
+<br>
+<form action="/comments/<%=@comment.id%>" method="POST">
+	<input type="hidden" name="_method" value="delete">
+	<input type="submit" value="Delete Comment">
+</form>

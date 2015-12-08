@@ -1,0 +1,9 @@
+<h1>Properties Listing</h1>
+<ul>
+	<% @all_properties.each do |property| %>
+		<li><a href="/properties/<%= property.id %>"><%= property.description %></a> 	listed by <%= property.user.name %><br> this property is available <%= property.availability %><br>
+		listed at <%= property.created_at.strftime("%d %b %Y") %> </li>
+	<% end %>
+</ul>
+
+

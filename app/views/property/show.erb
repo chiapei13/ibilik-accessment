@@ -1,0 +1,47 @@
+<h1>Property Listing</h1>
+
+listed by <%= @property.user.name %><br>
+<br>
+Description: <%= @property.description %><br>
+Location: <%= @property.location %><br>
+Availability: <%= @property.availability %><br>
+Price: <%= @property.price %> rate per night<br>
+<br>
+<br>
+	Bookings made for this property:
+<ul>
+	<% @property.bookings.each do |booking| %>
+	<li>Booked by <%= booking.user.name %> from <%= booking.start_date %> to <%= booking.end_date %>
+	</li>
+	<% end %>
+</ul>
+
+<%if current_user.id == @property.user.id %>
+<a href="/properties/<%= @property.id %>/edit"><button>Edit This Property Listing</button></a>
+<% end %>
+<br>
+<br>
+<%if current_user.id == @property.user.id %>
+<form action="/properties/<%=@property.id%>" method="POST">
+	<input type="hidden" name="_method" value="delete">
+	<input type="submit" value="Delete This Property Listing">
+</form>
+<% end %>
+<!-- NEED TO ONLY ALLOW OWNER OF POST TO EDIT & DEL POST (DONE!!!) -->
+<%if current_user.id != @property.user.id %>
+<a href="/properties/<%= @property.id %>/bookings/new"><button>Book This Property</button></a>
+<% end %>
+<!-- OWNER OF LISTING CAN'T MAKE A BOOKING -->
+
+
+<a href="/properties/<%= @property.id %>/comments/new"><button>Create a comment to this property listing</button></a>
+<br>
+
+<ul>
+	<% @property.comments.each do |comment| %>
+		<li>&quot;<%= comment.body %>&quot; commented by <%= comment.user.name %>   <%if current_user.id == comment.user.id %><a href="/comments/<%= comment.id %>/edit"><button>Edit or Delete your comment</button></a>
+			<% end %>
+		
+		</li>
+	<% end %>
+</ul>

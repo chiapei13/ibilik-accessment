@@ -1,0 +1,16 @@
+<h1>Create New Comment</h1>
+
+Property Decription: <%= @property.description %><br>
+by <%= @property.user.name %><br>
+<br>
+Location: <%= @property.location %><br>
+Availability: <%= @property.availability %><br>
+Price: <%= @property.price %><br>
+
+<form action="/properties/<%= @property.id %>/comments" method="POST">
+	<label>Your Comment:</label>
+	<textarea name="body"></textarea><br>
+	<input type="submit" value="Submit Comment">
+</form>
+
+

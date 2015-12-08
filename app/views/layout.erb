@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+
+<%if current_user %>
+
+	<% unless @home %>
+		<a href="/properties/index"><button>See all Property Listings (Homepage)</button></a>
+	<% end %>
+
+	<% unless @profile %>
+		<a href="/users/<%= current_user.id %>"><button>Back to user profile page</button></a>
+	<% end %>
+
+	<% unless @new_property %>
+		<a href="/properties/new"><button>Create a New Property Listing</button></a>
+	<% end %>
+
+
+
+<a href="/logout"><button>Logout</button></a>
+<% end %>
+
+<%= yield %>
+</body>
+</html>
+
+
+	

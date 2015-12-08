@@ -1,0 +1,28 @@
+<h1>Edit Booking Form</h1>
+
+Property Description: <%= @property.description %><br>
+Property Location: <%= @property.location %><br>
+Property Availability: <%= @property.availability %><br>
+Rate per Night: <%= @property.price %>
+<br>
+<br>
+<form action="/bookings/<%=@booking.id%>" method="POST">
+	<input type="hidden" name="_method" value="patch">
+
+	<label>Start Date:</label>
+	<input type="date" name="start_date" value="<%= @booking.start_date %>"><br>
+
+	<label>End Date:</label>
+	<input type="date" name="end_date" value="<%= @booking.end_date %>"><br>
+	<input type="submit" value="Update Booking">
+</form>
+<br>
+<br>
+<br>
+<br>
+<%if current_user.id == @booking.user.id %>
+<form action="/bookings/<%=@booking.id%>" method="POST">
+	<input type="hidden" name="_method" value="delete">
+	<input type="submit" value="Delete This Booking">
+</form>
+<% end %>
